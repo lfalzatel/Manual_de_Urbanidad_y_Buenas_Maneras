@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Urbanidad - Capítulo II: Del Aseo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #a78bfa;
+    --accent: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --text: #334155;
+    --text-light: #64748b;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://picsum.photos/seed/urbanidad/1920/1080.jpg') center/cover;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 60px 70px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section::-webkit-scrollbar {
+    width: 8px;
+}
+
+section::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+section::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+section.activa {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+section.salida {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+h3 {
+    color: var(--primary);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1.3em;
+    position: relative;
+    padding-left: 15px;
+}
+
+h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+ul {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    position: relative;
+    padding-left: 25px;
+}
+
+li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.destaque {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(167, 139, 250, 0.1));
+    border-left: 6px solid var(--primary);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.destaque::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+}
+
+.portada {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.portada::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: rotar 20s linear infinite;
+}
+
+@keyframes rotar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.portada h1 {
+    color: white;
+    font-size: 3.2em;
+    position: relative;
+    z-index: 1;
+}
+
+.portada h2 {
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+}
+
+.autores {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    display: inline-block;
+    padding: 25px 35px;
+    border-radius: 15px;
+    margin-top: 25px;
+    animation: flotar 6s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.autores p {
+    margin: 4px 0;
+    color: white;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+tr:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* controles */
+.controles {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 15px 40px;
+    z-index: 10;
+}
+
+button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.contador {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.indicadores {
+    display: flex;
+    gap: 8px;
+}
+
+.indicador {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.3);
+    transition: all 0.3s ease;
+}
+
+.indicador.activo {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Tarjetas para contenido */
+.tarjeta {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Iconos */
+.icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor {
+        height: 95vh;
+        border-radius: 15px;
+    }
+    
+    section {
+        padding: 40px 30px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+    
+    h2 {
+        font-size: 1.6em;
+    }
+    
+    .controles {
+        padding: 10px 20px;
+    }
+    
+    button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section.activa > * {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+section.activa > *:nth-child(1) { animation-delay: 0.1s; }
+section.activa > *:nth-child(2) { animation-delay: 0.2s; }
+section.activa > *:nth-child(3) { animation-delay: 0.3s; }
+section.activa > *:nth-child(4) { animation-delay: 0.4s; }
+section.activa > *:nth-child(5) { animation-delay: 0.5s; }
+section.activa > *:nth-child(6) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+
+<!-- PORTADA -->
+<section class="activa portada">
+    <h1>Manual de Urbanidad y Buenas Maneras</h1>
+    <h2>Capítulo II – Del Aseo</h2>
+    <p style="text-align:center; font-size: 1.2em; margin-top: 20px;"><em>Inspirado en la obra de Manuel Antonio Carreño (1875)</em></p>
+    <div class="autores">
+        <p><strong>Realizado por:</strong></p>
+        <p>Luis Fernando Alzate</p>
+        <p>Juan José Quintero</p>
+        <p>Cristian Alexis Ramírez</p>
+        <p>Sebastián Vásquez</p>
+        <p><strong>Presentado a:</strong></p>
+        <p>Alejandra Serna Agudelo – Instructora</p>
+        <p>Ética y Cultura para la Paz – ADSO 2899730</p>
+    </div>
+</section>
+
+<!-- PREGUNTA 1 -->
+<section>
+    <h2><i class="fas fa-book-open"></i> 1️⃣ Resumen del Capítulo "Del Aseo"</h2>
+    
+    <div class="tarjeta">
+        <p>El capítulo II del Manual de Carreño enseña que la limpieza es un deber moral y social. Divide el tema en cuatro artículos: el aseo personal, el de nuestros vestidos, el de nuestra habitación y el aseo hacia los demás. Cada uno resalta que la higiene no es solo apariencia, sino respeto hacia uno mismo y hacia quienes nos rodean.</p>
+    </div>
+    
+    <div class="tarjeta">
+        <p>El autor considera que el orden y la pulcritud fortalecen la dignidad, la salud y la convivencia. Así, una persona aseada inspira confianza, demuestra educación y contribuye al bienestar colectivo.</p>
+    </div>
+    
+    <div class="destaque">
+        <strong><i class="fas fa-lightbulb"></i> Reflexión:</strong> La limpieza es una forma de civismo; quien cuida su cuerpo, su entorno y sus hábitos promueve la cultura de paz.
+    </div>
+</section>
+
+<!-- PREGUNTA 2 -->
+<section>
+    <h2><i class="fas fa-exchange-alt"></i> 2️⃣ Diferencias entre Protocolo y Etiqueta</h2>
+    
+    <div class="tarjeta">
+        <table>
+            <tr>
+                <th><i class="fas fa-gavel"></i> Protocolo</th>
+                <th><i class="fas fa-handshake"></i> Etiqueta</th>
+            </tr>
+            <tr>
+                <td>Normas oficiales que regulan actos públicos y ceremonias formales.</td>
+                <td>Normas sociales y personales que orientan el buen comportamiento diario.</td>
+            </tr>
+            <tr>
+                <td>Aplica en instituciones, gobiernos o eventos solemnes.</td>
+                <td>Aplica en la vida cotidiana: aseo, trato y presentación.</td>
+            </tr>
+            <tr>
+                <td>Busca mantener jerarquía y orden institucional.</td>
+                <td>Busca expresar respeto, cortesía y educación hacia los demás.</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="destaque">
+        <strong><i class="fas fa-info-circle"></i> En el contexto del capítulo:</strong> La etiqueta se relaciona con los hábitos de limpieza y orden como símbolo de respeto personal y social.
+    </div>
+</section>
+
+<!-- PREGUNTA 3 -->
+<section>
+    <h2><i class="fas fa-users"></i> 3️⃣ ¿Qué es la Urbanidad?</h2>
+    
+    <div class="tarjeta">
+        <p>La urbanidad es el conjunto de normas que enseñan a comportarse con respeto, decoro y consideración hacia los demás. Carreño la concibe como la manifestación práctica de la educación moral.</p>
+    </div>
+    
+    <h3><i class="fas fa-list"></i> Ejemplos según el capítulo:</h3>
+    
+    <div class="tarjeta">
+        <ul>
+            <li><strong>Aseo personal:</strong> mantener el cuerpo limpio demuestra respeto y buena crianza.</li>
+            <li><strong>Vestimenta adecuada:</strong> usar ropa limpia y ordenada para no incomodar a los demás.</li>
+            <li><strong>Orden del hogar:</strong> conservar limpia la habitación y los espacios de trabajo.</li>
+        </ul>
+    </div>
+    
+    <div class="destaque">
+        <strong><i class="fas fa-check-circle"></i> Conclusión:</strong> Ser urbano es ser limpio, respetuoso y considerado; la cortesía inicia con la higiene.
+    </div>
+</section>
+
+<!-- PREGUNTA 4 -->
+<section>
+    <h2><i class="fas fa-clipboard-list"></i> 4️⃣ Reglas de Etiqueta según el Capítulo</h2>
+    
+    <div class="tarjeta">
+        <ul>
+            <li><strong><i class="fas fa-shower"></i> Del aseo personal:</strong> bañarse frecuentemente, cuidar uñas, cabello y dientes.</li>
+            <li><strong><i class="fas fa-tshirt"></i> Del vestido:</strong> usar prendas limpias, completas y adecuadas al entorno.</li>
+            <li><strong><i class="fas fa-home"></i> De la habitación:</strong> mantenerla ventilada, ordenada y libre de malos olores.</li>
+            <li><strong><i class="fas fa-hands-helping"></i> Hacia los demás:</strong> no causar incomodidad con olores o gestos poco higiénicos.</li>
+        </ul>
+    </div>
+    
+    <div class="destaque">
+        <strong><i class="fas fa-heart"></i> Aplicación ética:</strong> Estas reglas promueven convivencia, respeto y salud en los espacios familiares, académicos y laborales.
+    </div>
+</section>
+
+<!-- PREGUNTA 5 -->
+<section>
+    <h2><i class="fas fa-history"></i> 5️⃣ Costumbres Transformadas en la Actualidad</h2>
+    
+    <div class="tarjeta">
+        <p>Con el paso del tiempo, las normas del aseo se han ampliado para incluir nuevas dimensiones:</p>
+    </div>
+    
+    <div class="tarjeta">
+        <ul>
+            <li><strong><i class="fas fa-laptop"></i> Higiene digital:</strong> mantener orden y respeto en redes sociales y espacios virtuales.</li>
+            <li><strong><i class="fas fa-leaf"></i> Cuidado ambiental:</strong> la limpieza también implica responsabilidad ecológica y reciclaje.</li>
+            <li><strong><i class="fas fa-user-tie"></i> Presentación moderna:</strong> aunque la ropa sea más informal, la pulcritud sigue siendo signo de respeto.</li>
+            <li><strong><i class="fas fa-heartbeat"></i> Salud pública:</strong> hábitos como lavarse las manos o usar mascarilla reflejan conciencia social.</li>
+        </ul>
+    </div>
+    
+    <div class="destaque">
+        <strong><i class="fas fa-star"></i> Reflexión final:</strong> El mensaje de Carreño sigue vigente: el aseo es una forma de amor propio y de empatía hacia los demás.
+    </div>
+</section>
+
+<!-- CONCLUSIÓN -->
+<section>
+    <h2><i class="fas fa-flag-checkered"></i> Conclusión General</h2>
+    
+    <div class="tarjeta">
+        <p>El capítulo "Del Aseo" enseña que la limpieza no es solo apariencia, sino un valor moral que refuerza la dignidad y la convivencia. En un mundo moderno, ser limpio y ordenado significa también cuidar lo digital, lo ambiental y lo emocional.</p>
+    </div>
+    
+    <div class="destaque">
+        <p><strong><i class="fas fa-quote-left"></i> Carreño y la ética actual coinciden:</strong> la urbanidad nace del respeto, y el respeto empieza por el aseo. <i class="fas fa-quote-right"></i></p>
+    </div>
+    
+    <div class="tarjeta" style="text-align: center; margin-top: 30px;">
+        <i class="fas fa-award" style="font-size: 3em; color: var(--primary); margin-bottom: 15px;"></i>
+        <p style="font-weight: 600; font-size: 1.2em;">¡Gracias por su atención!</p>
+    </div>
+</section>
+
+<!-- CONTROLES -->
+<div class="controles">
+    <button id="btnAnt"><i class="fas fa-arrow-left"></i> Anterior</button>
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="indicadores" id="indicadores"></div>
+        <span class="contador"><span id="actual">1</span> / <span id="total">7</span></span>
+    </div>
+    <button id="btnSig">Siguiente <i class="fas fa-arrow-right"></i></button>
+</div>
+</div>
+
+<script>
+const secciones = document.querySelectorAll('section');
+const btnAnt = document.getElementById('btnAnt');
+const btnSig = document.getElementById('btnSig');
+const actualTxt = document.getElementById('actual');
+const totalTxt = document.getElementById('total');
+const indicadoresContainer = document.getElementById('indicadores');
+let indice = 0;
+totalTxt.textContent = secciones.length;
+
+// Crear indicadores
+for (let i = 0; i < secciones.length; i++) {
+    const indicador = document.createElement('div');
+    indicador.classList.add('indicador');
+    if (i === 0) indicador.classList.add('activo');
+    indicador.addEventListener('click', () => {
+        indice = i;
+        mostrar(indice);
+    });
+    indicadoresContainer.appendChild(indicador);
+}
+
+const indicadores = document.querySelectorAll('.indicador');
+
+function mostrar(nuevo) {
+    secciones.forEach((s, i) => {
+        s.classList.remove('activa', 'salida');
+        if (i === nuevo) {
+            s.classList.add('activa');
+        }
+        if (i < nuevo) {
+            s.classList.add('salida');
+        }
+    });
+    
+    // Actualizar indicadores
+    indicadores.forEach((ind, i) => {
+        ind.classList.toggle('activo', i === nuevo);
+    });
+    
+    actualTxt.textContent = nuevo + 1;
+    btnAnt.disabled = nuevo === 0;
+    
+    if (nuevo === secciones.length - 1) {
+        btnSig.innerHTML = '<i class="fas fa-redo"></i> Volver al inicio';
+    } else {
+        btnSig.innerHTML = 'Siguiente <i class="fas fa-arrow-right"></i>';
+    }
+}
+
+btnSig.addEventListener('click', () => {
+    if (indice < secciones.length - 1) {
+        indice++;
+        mostrar(indice);
+    } else {
+        indice = 0;
+        mostrar(indice);
+    }
+});
+
+btnAnt.addEventListener('click', () => {
+    if (indice > 0) {
+        indice--;
+        mostrar(indice);
+    }
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') btnSig.click();
+    if (e.key === 'ArrowLeft') btnAnt.click();
+});
+
+// Soporte para gestos táctiles en dispositivos móviles
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchEndX < touchStartX - 50) btnSig.click();
+    if (touchEndX > touchStartX + 50) btnAnt.click();
+}
+
+mostrar(0);
+</script>
+
+</body>
+</html>

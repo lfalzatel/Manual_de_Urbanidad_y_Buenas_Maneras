@@ -12,7 +12,8 @@
     --primary-dark: #4f46e5;
     --secondary: #a78bfa;
     --accent: #f59e0b;
-    --dark: #1e293b;
+    --dark: #0f172a;
+    --dark-blue: #1e3a8a;
     --light: #f8fafc;
     --text: #334155;
     --text-light: #64748b;
@@ -36,6 +37,96 @@ body {
     align-items: center;
     padding: 20px;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Partículas flotantes de fondo */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Formas geométricas flotantes */
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: floatShape 25s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    top: 10%;
+    left: 10%;
+    animation-duration: 20s;
+}
+
+.shape-2 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    top: 70%;
+    right: 10%;
+    animation-duration: 25s;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+    bottom: 20%;
+    left: 5%;
+    animation-duration: 30s;
+    animation-delay: 10s;
+}
+
+@keyframes floatShape {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(30px, -30px) rotate(90deg);
+    }
+    50% {
+        transform: translate(-20px, 20px) rotate(180deg);
+    }
+    75% {
+        transform: translate(40px, 10px) rotate(270deg);
+    }
 }
 
 body::before {
@@ -46,7 +137,7 @@ body::before {
     width: 100%;
     height: 100%;
     background: url('https://picsum.photos/seed/urbanidad/1920/1080.jpg') center/cover;
-    opacity: 0.1;
+    opacity: 0.05;
     z-index: -1;
 }
 
@@ -63,6 +154,7 @@ body::before {
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1;
 }
 
 section {
@@ -158,8 +250,8 @@ h3::before {
 }
 
 p {
-    line-height: 1.8;
-    font-size: 1.1em;
+    line-height: 1.2;
+    font-size: 1.05em;
     margin-bottom: 15px;
     color: var(--text);
 }
@@ -209,7 +301,7 @@ li::before {
 
 .portada {
     text-align: center;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-blue) 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -217,8 +309,10 @@ li::before {
     align-items: center;
     position: relative;
     overflow: hidden;
+    padding: 40px 20px;
 }
 
+/* Elementos flotantes en la portada */
 .portada::before {
     content: "";
     position: absolute;
@@ -226,8 +320,59 @@ li::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
     animation: rotar 20s linear infinite;
+}
+
+/* Estrellas parpadeantes */
+.star {
+    position: absolute;
+    background: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+.star:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    top: 25%;
+    right: 30%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    bottom: 30%;
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.star:nth-child(4) {
+    width: 18px;
+    height: 18px;
+    bottom: 20%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
 @keyframes rotar {
@@ -249,17 +394,18 @@ li::before {
 }
 
 .autores {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     display: inline-block;
     padding: 25px 35px;
     border-radius: 15px;
     margin-top: 25px;
     animation: flotar 6s ease-in-out infinite;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
     z-index: 1;
+    max-width: 90%;
 }
 
 .autores p {
@@ -269,7 +415,7 @@ li::before {
 
 @keyframes flotar {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-10px); }
 }
 
 /* tabla */
@@ -414,12 +560,16 @@ button:disabled {
         padding: 40px 30px;
     }
     
+    .portada {
+        padding: 30px 15px;
+    }
+    
     h1 {
-        font-size: 2.2em;
+        font-size: 2em;
     }
     
     h2 {
-        font-size: 1.6em;
+        font-size: 1.3em;
     }
     
     .controles {
@@ -429,6 +579,11 @@ button:disabled {
     button {
         padding: 10px 15px;
         font-size: 0.9em;
+    }
+    
+    .autores {
+        max-width: 95%;
+        padding: 20px 25px;
     }
 }
 
@@ -458,13 +613,27 @@ section.activa > *:nth-child(6) { animation-delay: 0.6s; }
 </head>
 <body>
 
+<!-- Partículas flotantes -->
+<div class="particles" id="particles"></div>
+
+<!-- Formas geométricas flotantes -->
+<div class="shape shape-1"></div>
+<div class="shape shape-2"></div>
+<div class="shape shape-3"></div>
+
 <div class="contenedor">
 
 <!-- PORTADA -->
 <section class="activa portada">
-    <h1>Manual de Urbanidad y Buenas Maneras</h1>
-    <h2>Capítulo II – Del Aseo</h2>
-    <p style="text-align:center; font-size: 1.2em; margin-top: 20px;"><em>Inspirado en la obra de Manuel Antonio Carreño (1875)</em></p>
+    <!-- Estrellas parpadeantes -->
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+    <h2>Manual de Urbanidad y Buenas Maneras</h2>
+    <h3>Capítulo II – Del Aseo</h3>
+    <p style="text-align:center; font-size: 1.2em; margin-top: 20px;color:white;"><em>Inspirado en la obra de Manuel Antonio Carreño (1875)</em></p>
     <div class="autores">
         <p><strong>Realizado por:</strong></p>
         <p>Luis Fernando Alzate</p>
@@ -623,8 +792,33 @@ const btnSig = document.getElementById('btnSig');
 const actualTxt = document.getElementById('actual');
 const totalTxt = document.getElementById('total');
 const indicadoresContainer = document.getElementById('indicadores');
+const particlesContainer = document.getElementById('particles');
 let indice = 0;
 totalTxt.textContent = secciones.length;
+
+// Crear partículas flotantes
+function createParticles() {
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 15 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Posición inicial aleatoria
+        particle.style.left = `${Math.random() * 100}%`;
+        
+        // Duración de animación aleatoria
+        particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+createParticles();
 
 // Crear indicadores
 for (let i = 0; i < secciones.length; i++) {
